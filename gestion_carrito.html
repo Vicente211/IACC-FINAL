@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión del Carrito</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <main class="container mt-5">
+        <h2>Gestión del Carrito</h2>
+        <form action="process_carrito.php" method="post">
+            <div class="form-group">
+                <label for="libro_id">Selecciona un Libro</label>
+                <select class="form-control" id="libro_id" name="libro_id" required>
+                    <!-- Opciones de libros desde la base de datos -->
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="cantidad">Cantidad</label>
+                <input type="number" class="form-control" id="cantidad" name="cantidad" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Añadir al Carrito</button>
+        </form>
+    </main>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script>
+        // Cargar libros desde la base de datos
+        $(document).ready(function() {
+            $.ajax({
+                url: 'get_libros.php',
+                method: 'GET',
+                success: function(data) {
+                    $('#libro_id').html(data);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
